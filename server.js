@@ -31,6 +31,56 @@ app.listen(3000, function() {
   console.log('server started');
 }); 
 
+/*
+* API routes
+*/
+
+app.get('/api/todos', function (req, res) {
+  Todo.find(function (err, allTodos) {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json(allTodos);
+    }
+  });
+});
+
+app.post('/api/todos', function (req, res) {
+  var newTodo = new Todo(req.body);
+  newTodo.save(function (err, savedTodo) {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json(savedTodo);
+    }
+  });
+});
+
+app.get('/api/todos', function (req, res) {
+  ...
+});
+
+app.post('/api/todos', function (req, res) {
+  ...
+});
+
+app.get('/api/todos/:id', function (req, res) {
+  ...
+});
+
+app.put('/api/todos/:id', function (req, res) {
+  ...
+});
+
+app.delete('/api/todos/:id', function (req, res) {
+  ...
+});
+
+/*
+* Load `views/index.hbs` file
+* when any route is requested from the server
+*/
+
 app.get('*', function(req, res) {
   res.render('index'); 
 });  
