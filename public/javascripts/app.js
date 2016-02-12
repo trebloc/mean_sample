@@ -2,13 +2,14 @@
 * public/javascripts/app.js
 */
 
-angular.module('sampleApp', ['ui.router']);
+angular.module('sampleApp', ['ui.router', 'ngResource']);
   .config(config);
   .controller('HomeController', HomeController);
 
 function HomeController() {
   var vm = this;
   vm.homeTest = "Welcome to the homepage!";  
+// Put hard-coded data.
 }
 
 config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
