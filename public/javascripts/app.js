@@ -2,21 +2,16 @@
 * public/javascripts/app.js
 */
 
-angular.module('sampleApp', ['ui.router', 'ngResource']);
-  .config(config);
+angular
+  .module('sampleApp', ['ui.router'])
+  .config(config)
   .controller('HomeController', HomeController);
-
-function HomeController() {
-  var vm = this;
-  vm.homeTest = "Welcome to the homepage!";  
-// Put hard-coded data.
-}
 
 config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 function config($stateProvider, $urlRouterProvider, $locationProvider) {
   console.log('config');
   // this allows us to use route without the hash params!
-  $locationProvider.html5mode({
+  $locationProvider.html5Mode({
     enabled: true,
     requireBase: false
   });
@@ -26,8 +21,20 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
       .state('home', {
         url: "/",
-        controller: 'HomeController',
-        controllerAs: 'home',
-        template: 'Home!'
+        views: {
+
+          'main': {
+                  controller: 'HomeController',
+                  controllerAs: 'home',
+                  templateUrl: 'templates/main.html' 
+          }
+        }
       });
-}  
+} 
+
+function HomeController() {
+  var vm = this;
+  vm.homeTest = "Welcome to the homepage!";  
+// Put hard-coded data.
+}
+
