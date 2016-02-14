@@ -37,6 +37,7 @@ var Todo = require('./models/index');
 
 // get all todos
 app.get('/api/todos', function (req, res) {
+  console.log("hit get route");
   db.Todo.find(function (err, allTodos) {
     if (err) {
       res.status(500).json({ error: err.message });
@@ -49,7 +50,7 @@ app.get('/api/todos', function (req, res) {
 
 // create new todo
 app.post('/api/todos', function (req, res) {
-  // create new todo with form data (`req.body`)  
+  // create new todo with form data (`req.body`)
   var newTodo = new Todo(req.body);
 
   // save new todo in db
@@ -110,7 +111,7 @@ app.delete('/api/todos/:id', function (req, res) {
   var todoId = req.params.id;
 
   // find todo in db by id and remove
-  Todo.findOneAndRemove({ _id: todoId }, function (err, deletedTodo) {
+  db.Todo.findOneAndRemove({ _id: todoId }, function (err, deletedTodo) {
     if (err) {
       res.status(500).json({ error: err.message});
     } else {

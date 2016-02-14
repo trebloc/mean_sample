@@ -13,11 +13,19 @@ toDoList.push({
               title: 'Pasta Night',
               description: 'Cook Spaghetti',
             });
+toDoList.push({ 
+              title: 'Game Night',
+              description: 'Playing Monopoly',
+            }); 
+toDoList.push({ 
+              title: 'Cooking Night',
+              description: 'Cook a new recipe',
+            }); 
 
 
 db.Todo.remove({}, function(err, toDos){
 
-  db.Todo.create(toDoList, function(err, albums){
+  db.Todo.create(toDoList, function(err, toDos){
     if (err) { return console.log('ERROR', err); }
     console.log("all toDos:", toDos);
     console.log("toDo", toDos.length, "toDos");

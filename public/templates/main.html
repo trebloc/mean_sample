@@ -1,5 +1,41 @@
 <div class="container">
-<h1>Hi Neda</h1>
+  <div>
+    <p></p>
+    <div ng-repeat="todo in home.todos" class="list-group-item">
+      <p >Title: {{todo.title}} <span data-ng-click="home.todo.editForm = true"><span data-ng-click="home.deleteTodo(todo)" class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></p>
+      <p>Description: {{todo.description}}</p>  
+    </div>
+  </div>
 
-<p>{{homeTest}}</p>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <!-- form to create new todo -->
+    <form ng-submit="home.createTodo()">
+      <div class="form-group">
+        <label for="todo_title">New To Do</label>
+        <input type="text" ng-model="home.todo.title" class="form-control" id="todo_title" placeholder="What do you need to do?" autofocus>
+      </div>
+      <div class="form-group">
+        <label for="todo_description">Description</label>
+        <textarea ng-model="home.todo.description" class="form-control" id="todo_description" placeholder="Describe the task."></textarea>
+      </div>
+      <input type="submit" value="Add To Do" class="btn btn-default">
+    </form>
+                <div >
+              <div class="pull-right">
+                <a href="#" ng-click="index.markDone(todo)"><i class="fa fa-check"></i></a>
+                <a href="#" ng-click="todo.editForm = true"><i class="fa fa-pencil"></i></a>
+                <a href="#" ng-click="index.deleteTodo(todo)"><i class="fa fa-times"></i></a>
+              </div>
+            <!-- form to edit todo -->
+            <form ng-show="todo.editForm" ng-submit="index.updateTodo(todo)">
+              <div class="form-group">
+                <input type="text" ng-model="todo.title" class="form-control" placeholder="What do you need to do?">
+              </div>
+              <div class="form-group">
+                <textarea ng-model="todo.description" class="form-control" placeholder="Describe the task."></textarea>
+              </div>
+              <input type="submit" value="Save To Do" class="btn btn-default">
+            </form>    
+</div>
 </div>
