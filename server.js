@@ -29,7 +29,7 @@ app.set('view engine', 'hbs')
  * DATABASE *
  ************/
 
-var Todo = require('./models/index');
+var Todo = require('./models/index').Todo;
 
 /**********
  * ROUTES *
@@ -38,7 +38,7 @@ var Todo = require('./models/index');
 // get all todos
 app.get('/api/todos', function (req, res) {
   console.log("hit get route");
-  db.Todo.find(function (err, allTodos) {
+    db.Todo.find(function (err, allTodos) {
     if (err) {
       res.status(500).json({ error: err.message });
     } else {
@@ -51,8 +51,9 @@ app.get('/api/todos', function (req, res) {
 // create new todo
 app.post('/api/todos', function (req, res) {
   // create new todo with form data (`req.body`)
+  console.log('post request: ', req.body);
   var newTodo = new Todo(req.body);
-
+  console.log("New Post")
   // save new todo in db
   newTodo.save(function (err, savedTodo) {
     if (err) {

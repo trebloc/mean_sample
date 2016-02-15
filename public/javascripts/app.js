@@ -44,8 +44,10 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
 TodoFactory.$inject = ['$resource'];
 function TodoFactory($resource) {
   // $resource gives you built in CRUDy functions like: save, query, remove, update
+
   return $resource('/api/todos/:id', { id: '@_id' },
   {
+    'save': {method:'POST'},    
     'update': { method:'PUT' },
     'delete': { method: 'DELETE'}
   });
@@ -66,7 +68,7 @@ function HomeController(Todo) {
     var newTodo = Todo.save(vm.todo);
     console.log(newTodo)
     vm.todo = {};
-    vm.todos.push(newTodo);
+    vm.todos.unshift(newTodo);
   };
 
   vm.updateTodo = function(todo) {

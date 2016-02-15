@@ -6,8 +6,7 @@
       <p>Description: {{todo.description}}</p>  
     </div>
   </div>
-
-<div class="row">
+  <div><hr></div>
   <div class="col-md-6 col-md-offset-3">
     <!-- form to create new todo -->
     <form ng-submit="home.createTodo()">
@@ -21,21 +20,5 @@
       </div>
       <input type="submit" value="Add To Do" class="btn btn-default">
     </form>
-                <div >
-              <div class="pull-right">
-                <a href="#" ng-click="index.markDone(todo)"><i class="fa fa-check"></i></a>
-                <a href="#" ng-click="todo.editForm = true"><i class="fa fa-pencil"></i></a>
-                <a href="#" ng-click="index.deleteTodo(todo)"><i class="fa fa-times"></i></a>
-              </div>
-            <!-- form to edit todo -->
-            <form ng-show="todo.editForm" ng-submit="index.updateTodo(todo)">
-              <div class="form-group">
-                <input type="text" ng-model="todo.title" class="form-control" placeholder="What do you need to do?">
-              </div>
-              <div class="form-group">
-                <textarea ng-model="todo.description" class="form-control" placeholder="Describe the task."></textarea>
-              </div>
-              <input type="submit" value="Save To Do" class="btn btn-default">
-            </form>    
-</div>
+  </div>    
 </div>
